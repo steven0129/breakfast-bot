@@ -1,6 +1,5 @@
 const linebot = require('linebot')
-const express = require('express')
-const app = express()
+const app = require('express')()
 const bot = linebot({
     channelId: process.env.CHANNEL_ID,
     channelSecret: process.env.CHANNEL_SECRET,
@@ -9,6 +8,7 @@ const bot = linebot({
 
 bot.on('message', (e) => {
     if (e.message.type === 'text') {
+        console.log(e.message)
         let msg = e.message.text
         e.reply(msg).then((data) => {
             console.log(msg)
