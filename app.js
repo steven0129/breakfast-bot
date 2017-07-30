@@ -12,6 +12,7 @@ bot.on('message', (e) => {
         let msg = e.message.text
         request(process.env.LUIS_URL + encodeURIComponent(msg))
             .then((response) => {
+                response = JSON.parse(response)
                 switch (response.intents[0].intent) {
                     case '打招呼':
                         if (response.intents[0].score > 0.75) {
