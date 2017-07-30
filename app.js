@@ -19,7 +19,7 @@ bot.on('message', (e) => {
 })
 
 var linebotParser = bot.parser()
-app.post('/', linebotParser)
+app.post('/webhook', linebotParser)
 
 const server = app.listen(process.env.PORT || 8080, () => {
     let port = server.address().port;
