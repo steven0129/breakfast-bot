@@ -14,7 +14,6 @@ const config = {
 
 router.post('/webhooks', async (ctx, next) => {
     ctx.body = ctx.request.body.events
-    await next()
 })
 
 app.use(logger())
