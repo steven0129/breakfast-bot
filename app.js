@@ -14,12 +14,13 @@ const config = {
 
 router.post('/webhooks', async (ctx, next) => {
     ctx.body = ctx.request.body.events
+    await next()
 })
 
 app.use(logger())
 app.use(bodyParser())
-app.use(json())
 app.use(botMiddleware(config))
+app.use(json())
 app.use(router.routes())
 
 app.listen(process.env.PORT || 8080)
