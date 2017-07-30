@@ -16,11 +16,14 @@ bot.on('message', (e) => {
                     case '打招呼':
                         if (response.intents[0].score > 0.75) {
                             let ans = ['您好', '哈囉', '您好, 非常高興為您服務', 'hello']
-                            let index = Math.floor(Math.random(ans.length))
+                            let index = Math.floor(Math.random() * ans.length)
                             e.reply(ans[index]).catch((error) => console.log(error))
                         } else {
                             e.reply('不好意思, 小哲只能了解早餐相關的事情').catch((error) => console.log(error))
                         }
+                        break
+                    default:
+                        e.reply('不好意思, 小哲只能了解早餐相關的事情').catch((error) => console.log(error))
                         break
                 }
             })
