@@ -9,11 +9,11 @@ const bot = linebot({
 
 bot.on('message', (e) => {
     if (e.message.type === 'text') {
-        console.log(e.message)
         let msg = e.message.text
         request(process.env.LUIS_URL + msg)
             .then((response) => {
-                e.reply(msg).catch((error) => console.log(error))
+                console.log(response)
+                e.reply(response).catch((error) => console.log(error))
             })
             .catch((error) => console.log(error))
     }
