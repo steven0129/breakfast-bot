@@ -19,7 +19,7 @@ bot.on('message', (e) => {
                             let index = Math.floor(Math.random(ans.length))
                             e.reply(ans[index]).catch((error) => console.log(error))
                         } else {
-                            e.reply('不好意思, 我不太了解您的意思').catch((error) => console.log(error))
+                            e.reply('不好意思, 小哲只能了解早餐相關的事情').catch((error) => console.log(error))
                         }
                         break
                 }
