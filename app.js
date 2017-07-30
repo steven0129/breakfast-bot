@@ -1,31 +1,27 @@
+const linebot = require('linebot')
 const express = require('express')
-const middleware = require('@line/bot-sdk').middleware
-const JSONParseError = require('@line/bot-sdk/exceptions').JSONParseError
-const SignatureValidationFailed = require('@line/bot-sdk/exceptions').SignatureValidationFailed
-
 const app = express()
-
-const config = {
-    channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
-    channelSecret: process.env.CHANNEL_SECRET
-}
-
-app.use(middleware(config))
-
-app.post('/webhook', (req, res) => {
-    res.json(req.body.events) // req.body will be webhook event object
+const bot = linebot({
+    channelId: process.env.CHANNEL_ID,
+    channelSecret: process.env.CHANNEL_SECRET,
+    channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
 })
 
-app.use((err, req, res, next) => {
-    if (err instanceof SignatureValidationFailed) {
-        res.status(401).send(err.signature);
-        return
-    } else if (err instanceof JSONParseError) {
-        res.status(400).send(err.raw)
-        return
+bot.on('message', (e) => {
+    if (e.message.type === 'text') {
+        let msg = e.message.text
+        e.reply(msg).then((data) => {
+            console.log(msg)
+        }).catch((error) => {
+            console.log('error')
+        })
     }
-
-    next(err) // will throw default 500
 })
 
-app.listen(process.env.port || 8080)
+var linebotParser = bot.parser()
+app.post('/', linebotParser)
+
+const server = app.listen(process.env.PORT || 8080, () => {
+    let port = server.address().port;
+    console.log(`App now running on port ${port}`)
+})
