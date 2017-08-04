@@ -11,10 +11,10 @@ diContainer.register('luisUrl', process.env.LUIS_URL)
 diContainer.register('greets', ['您好', '哈囉', '您好, 非常高興為您服務', 'hello'])
 diContainer.register('app', app)
 diContainer.factory('luis', require('./lib/luis.js'))
+diContainer.factory('db', require('./lib/db.js'))
+diContainer.factory('botRule', require('./lib/botRule.js'))
 diContainer.factory('botService', require('./lib/botService.js'))
 diContainer.factory('botController', require('./lib/botController.js'))
-diContainer.factory('botRule', require('./lib/botRule.js'))
-diContainer.factory('db', require('./lib/db.js'))
 
 const botController = diContainer.get('botController')
 
