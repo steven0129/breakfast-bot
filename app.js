@@ -14,6 +14,7 @@ diContainer.factory('luis', require('./lib/luis.js'))
 diContainer.factory('botService', require('./lib/botService.js'))
 diContainer.factory('botController', require('./lib/botController.js'))
 diContainer.factory('botRule', require('./lib/botRule.js'))
+diContainer.factory('db', require('./lib/db.js'))
 
 const botController = diContainer.get('botController')
 
