@@ -21,6 +21,7 @@ diContainer.factory('botController', require('./lib/botController.js'))
 const botController = diContainer.get('botController')
 
 app.use(errorhandler())
+app.get('/', res.send('you cannot access this page.'))
 app.post('/webhook', botController.parser)
 
 const server = app.listen(process.env.PORT || 8080, () => {
