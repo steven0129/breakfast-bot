@@ -6,7 +6,17 @@ diContainer.register('channelId', process.env.CHANNEL_ID)
 diContainer.register('channelSecret', process.env.CHANNEL_SECRET)
 diContainer.register('channelAccessToken', process.env.CHANNEL_ACCESS_TOKEN)
 diContainer.register('dbName', process.env.DB_NAME)
-diContainer.register('dbCollection', process.env.DB_COLLECTION)
+diContainer.register('dbCollection', {
+    menu1: {
+        name: String,
+        price: Number
+    },
+    rawwords: {
+        name: String,
+        content: String
+    }
+})
+
 diContainer.register('dbUrl', process.env.MONGODB_URI)
 diContainer.register('dbPort', process.env.DB_PORT)
 diContainer.register('luisUrl', process.env.LUIS_URL)
